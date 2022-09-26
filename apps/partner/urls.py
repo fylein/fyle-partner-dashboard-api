@@ -1,3 +1,7 @@
 from django.urls import path
 
-urlpatterns = []
+from .views import PartnerView
+
+urlpatterns = [
+    path('', PartnerView.as_view(), name='partner')
+]

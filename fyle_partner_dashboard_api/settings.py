@@ -64,6 +64,8 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'fyle_partner_dashboard_api.urls'
 APPEND_SLASH = False
 
+AUTH_USER_MODEL = 'users.User'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -82,9 +84,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fyle_partner_dashboard_api.wsgi.application'
 
+FYLE_REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'apps.users.serializers.UserSerializer'
+}
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated'
+        'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'fyle_rest_auth.authentication.FyleJWTAuthentication',
