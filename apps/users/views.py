@@ -1,5 +1,4 @@
 from rest_framework import generics, status
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from fyle_rest_auth.models import AuthToken
@@ -14,7 +13,6 @@ class UserProfileView(generics.RetrieveAPIView):
         Get User Profile
         """
         refresh_token = AuthToken.objects.get(user__user_id=request.user).refresh_token
-
         cluster_domain = PartnerOrg.objects.get(user__user_id=request.user).cluster_domain
 
         platform = PlatformConnector(refresh_token, cluster_domain)
