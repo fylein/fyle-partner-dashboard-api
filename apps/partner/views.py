@@ -3,6 +3,9 @@ from django.contrib.auth import get_user_model
 from rest_framework import generics, status
 from rest_framework.response import Response
 
+from fyle_rest_auth.models import AuthToken
+
+from apps.fyle.helpers import PlatformConnector
 from apps.partner.models import PartnerOrg
 
 from .serializers import PartnerOrgSerializer
@@ -32,3 +35,21 @@ class PartnerOrgView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         return self.get(self)
+
+class OrgsView(generics.RetrieveAPIView):
+    def get(self, request):
+        refresh_token = AuthToken.objects.get(user__user_id=self.request.user).refresh_token
+        cluster_domain = PartnerOrg.objects.get(user__user_id=self.request.user).cluster_domain
+
+        platform = PlatformConnector(refresh_token, cluster_domain)
+
+        orgs = platform.connection.v1beta.accountant.orgs.list(query_params={
+            'limit': self.request.query_params.get('limit'),
+            'offset': self.request.query_params.get('offset'),
+            'order': 'id.desc'
+        })
+
+        return Response(
+            data=orgs,
+            status=status.HTTP_200_OK
+        )

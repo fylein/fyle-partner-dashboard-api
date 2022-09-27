@@ -2,7 +2,7 @@
 
 # Setting value for DB Host
 export DB_HOST=db
-echo "asdads"
+
 # This step will login to psql and create the fixture database
 bash tests/sql_fixtures/reset_db_fixtures/reset_db.sh
 
