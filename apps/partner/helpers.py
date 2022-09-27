@@ -6,7 +6,7 @@ import requests
 from django.conf import settings
 
 
-def post_request(url: str, body: Dict, access_token: str):
+def post_request(url: str, body: Dict, access_token: str) -> Dict:
     """
     Create a HTTP post request.
     """

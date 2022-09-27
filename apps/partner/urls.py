@@ -1,7 +1,7 @@
 from django.urls import path
 
-from .views import PartnerView
+from .views import PartnerOrgView
 
 urlpatterns = [
-    path('', PartnerView.as_view(), name='partner')
+    path('', PartnerOrgView.as_view(), name='partner_orgs')
 ]

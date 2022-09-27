@@ -9,8 +9,8 @@ class PartnerOrg(models.Model):
     """
     PartnerOrg model
     """
-    id = models.AutoField(primary_key=True, help_text='Unique Id to identify a workspace')
-    name = models.CharField(max_length=255, help_text='Name of the workspace')
+    id = models.AutoField(primary_key=True, help_text='Unique Id to identify a partner')
+    name = models.CharField(max_length=255, help_text='Name of the partner primary org')
     user = models.ManyToManyField(User, help_text='Reference to users table')
     primary_org_id = models.CharField(max_length=255, help_text='Org Id', unique=True)
     cluster_domain = models.CharField(max_length=255, help_text='Fyle Cluster domain')

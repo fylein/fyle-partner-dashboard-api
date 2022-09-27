@@ -5,10 +5,10 @@ from rest_framework.response import Response
 from fyle_rest_auth.models import AuthToken
 
 from apps.partner.models import PartnerOrg
-from .helpers import PlatformConnector
+from apps.fyle.helpers import PlatformConnector
 
 
-class UserProfileView(generics.GenericAPIView):
+class UserProfileView(generics.RetrieveAPIView):
     def get(self, request, *args, **kwargs):
         """
         Get User Profile
