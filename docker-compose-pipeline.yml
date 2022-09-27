@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  api:
+    build: 
+      context: ./
+      args: 
+        CI: ENABLED
+    entrypoint: bash run.sh
+    restart: unless-stopped
+    volumes:
+    - ./:/fyle-partner-dashboard-api
+    ports:
+    - 8006:8006
+    depends_on:
+    - db
+    environment: 
+      SECRET_KEY: thisisthedjangosecretkey
+      ALLOWED_HOSTS: "*"
+      DEBUG: "False"
+      API_URL: http://localhost:8006/api
+      DATABASE_URL: postgres://postgres:postgres@db:5432/partner_dashboard_db
+      DB_HOST: db
+      FYLE_BASE_URL: dummy
+      FYLE_CLIENT_ID: dummy
+      FYLE_CLIENT_SECRET: dummy
+      FYLE_REFRESH_TOKEN: dummy
+      FYLE_TOKEN_URI: dummy
+  db:
+    image: "postgres:latest"
+    environment: 
+      POSTGRES_DB: dummy
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - data:/var/lib/postgresql/data/
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  api:
+  data:
