@@ -21,8 +21,8 @@ class Orgs(ListResources, ListAllResources):
             "count": 3,
             "data": [
                 {
-					"name": "Goldman Sachs",
-					"id": "orgs124",
+					"org_name": "Goldman Sachs",
+					"org_id": "orgs124",
 					"logo_download_url": "https://xyz.something.something",
 					"pending_invitations": 14,
 					"active_users_count": 34,
