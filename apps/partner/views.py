@@ -36,6 +36,7 @@ class PartnerOrgView(generics.RetrieveUpdateAPIView):
     def get_object(self):
         return self.get(self)
 
+
 class OrgsView(generics.RetrieveAPIView):
     def get(self, request):
         refresh_token = AuthToken.objects.get(user__user_id=self.request.user).refresh_token
