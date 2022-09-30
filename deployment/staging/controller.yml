@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
         - name: partner-dashboard-api
-          image: docker.io/sivafyle/fyle_partner_dashboard-api:${version}
+          image: docker.io/{{DOCKERHUB_USERNAME}}/fyle_partner_dashboard-api:{{RELEASE_VERSION}}
           resources:
             limits:
               memory: 450Mi
