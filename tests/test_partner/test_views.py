@@ -76,3 +76,12 @@ def test_orgs_get_view(api_client, mocker, access_token):
     response = json.loads(response.content)
     for org in response['data']:
       assert dict_compare_keys(org, fixture['orgs']) == [], 'orgs GET diff in keys'
+
+@pytest.mark.django_db(databases=['default', 'cache_db'])
+def test_ready_view(api_client, mocker, access_token):
+    """"
+    Test Get of Ready state
+    """
+    url = reverse('ready')
+    response = api_client.get(url)
+    assert response.status_code == 200

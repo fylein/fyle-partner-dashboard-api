@@ -54,3 +54,24 @@ class OrgsView(generics.RetrieveAPIView):
             data=orgs,
             status=status.HTTP_200_OK
         )
+
+class ReadyView(generics.RetrieveAPIView):
+    """
+    Ready call
+    """
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request):
+        """
+        Ready call
+        """
+
+        PartnerOrg.objects.first()
+
+        return Response(
+            data={
+                'message': 'Ready'
+            },
+            status=status.HTTP_200_OK
+        )
