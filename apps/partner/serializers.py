@@ -41,9 +41,10 @@ class PartnerOrgSerializer(serializers.ModelSerializer):
             cache.delete(str(partner_org.id))
         else:
             cluster_domain = get_cluster_domain(access_token)
+            currency = user_profile['data']['org']['currency']
 
             partner_org = PartnerOrg.objects.create(
-                name=primary_org_name, primary_org_id=primary_org_id, cluster_domain=cluster_domain
+                name=primary_org_name, primary_org_id=primary_org_id, cluster_domain=cluster_domain, currency=currency
             )
 
             partner_org.user.add(User.objects.get(user_id=self.context['request'].user))
