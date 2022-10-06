@@ -254,7 +254,8 @@ CREATE TABLE public.partner_orgs (
     primary_org_id character varying(255) NOT NULL,
     cluster_domain character varying(255) NOT NULL,
     created_at timestamp with time zone NOT NULL,
-    updated_at timestamp with time zone NOT NULL
+    updated_at timestamp with time zone NOT NULL,
+    currency character varying(5)
 );
 
 
@@ -524,6 +525,8 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 21	fyle_rest_auth	0006_auto_20201221_0849	2022-09-26 14:13:28.002726+00
 22	partner	0001_initial	2022-09-26 14:13:28.009325+00
 23	sessions	0001_initial	2022-09-26 14:13:28.016839+00
+24	partner	0002_auto_20220927_1000	2022-10-04 16:34:02.120708+00
+25	partner	0003_partnerorg_currency	2022-10-04 16:34:02.123899+00
 \.
 
 
@@ -539,7 +542,7 @@ COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
 -- Data for Name: partner_orgs; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.partner_orgs (id, name, primary_org_id, cluster_domain, created_at, updated_at) FROM stdin;
+COPY public.partner_orgs (id, name, primary_org_id, cluster_domain, created_at, updated_at, currency) FROM stdin;
 \.
 
 
@@ -591,7 +594,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 7, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 23, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 25, true);
 
 
 --
