@@ -40,7 +40,7 @@ class PartnerOrgView(generics.RetrieveUpdateAPIView):
 class OrgsView(generics.RetrieveAPIView):
     def get(self, request):
         refresh_token = AuthToken.objects.get(user__user_id=self.request.user).refresh_token
-        cluster_domain = PartnerOrg.objects.get(user__user_id=self.request.user).cluster_domain
+        cluster_domain = PartnerOrg.objects.filter(user__user_id=self.request.user).first().cluster_domain
 
         platform = PlatformConnector(refresh_token, cluster_domain)
 

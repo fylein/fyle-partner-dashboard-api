@@ -66,6 +66,10 @@ def test_orgs_get_view(api_client, mocker, access_token):
     """"
     Test Get of Partner Orgs
     """
+    mocker.patch(
+        'fyle.platform.apis.v1beta.accountant.orgs.list',
+         return_value=fixture['orgs']
+    )
     url = reverse('orgs')
 
     api_client.credentials(HTTP_AUTHORIZATION='Bearer {}'.format(access_token))
@@ -74,7 +78,7 @@ def test_orgs_get_view(api_client, mocker, access_token):
     assert response.status_code == 200
 
     response = json.loads(response.content)
-    for org in response['data']:
+    for org in response:
       assert dict_compare_keys(org, fixture['orgs']) == [], 'orgs GET diff in keys'
 
 @pytest.mark.django_db(databases=['default', 'cache_db'])
