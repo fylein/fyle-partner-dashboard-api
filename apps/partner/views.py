@@ -47,7 +47,7 @@ class OrgsView(generics.RetrieveAPIView):
         orgs = platform.connection.v1beta.accountant.orgs.list(query_params={
             'limit': self.request.query_params.get('limit'),
             'offset': self.request.query_params.get('offset'),
-            'order': 'id.desc'
+            'order': 'name.asc'
         })
 
         return Response(
