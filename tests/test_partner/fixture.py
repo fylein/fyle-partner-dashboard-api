@@ -19,7 +19,7 @@ fixture = {
         "domain": "fyleforqvd.com",
         "enabled_users_count": 15,
         "id": "orNoatdUnm1w",
-        "incomplete_card_expenses_count": 128,
+        "incomplete_expenses_count": 128,
         "is_verified": True,
         "logo_file": {
             "content_type": "image/png",
