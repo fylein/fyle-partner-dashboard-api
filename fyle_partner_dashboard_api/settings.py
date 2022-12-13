@@ -87,7 +87,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'fyle_partner_dashboard_api.wsgi.application'
 
 FYLE_REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'apps.users.serializers.UserSerializer'
+    'USER_DETAILS_SERIALIZER': 'apps.users.serializers.UserSerializer',
+    'FYLE_MODULE': 'PARTNER_DASHBOARD'
 }
 
 REST_FRAMEWORK = {
