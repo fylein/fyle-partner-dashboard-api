@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: partner-dashboard-api
+  namespace: integrations
+  labels:
+    app: partner-dashboard-api
+spec:
+  ports:
+    - port: 8000
+  selector:
+    app: partner-dashboard-api
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: partner-dashboard-api
+  namespace: integrations
+  labels:
+    app: partner-dashboard-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: partner-dashboard-api
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: partner-dashboard-api
+    spec:
+      containers:
+        - name: partner-dashboard-api
+          image: docker.io/{{DOCKERHUB_USERNAME}}/fyle_partner_dashboard-api:{{RELEASE_VERSION}}
+          resources:
+            limits:
+              memory: 500Mi
+            requests:
+              memory: 250Mi
+          env:
+            - name: GET_HOSTS_FROM
+              value: dns
+          ports:
+            - containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /api/partner/ready/
+              port: 8000
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+          envFrom:
+            - secretRef:
+                name: partner-dashboard-api-secrets
+      imagePullSecrets:
+        - name: myregistrykey2
