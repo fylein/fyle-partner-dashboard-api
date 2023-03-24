@@ -27,7 +27,7 @@ services:
       FYLE_REFRESH_TOKEN: dummy
       FYLE_TOKEN_URI: https://lolo.fyle.tech
   db:
-    image: "postgres:latest"
+    image: "postgres:15"
     environment: 
       POSTGRES_DB: dummy
       POSTGRES_USER: postgres
