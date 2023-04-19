@@ -15,6 +15,8 @@ import os
 import sys
 import dj_database_url
 
+from .sentry import Sentry
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -231,6 +233,9 @@ FYLE_BASE_URL = os.environ.get('FYLE_BASE_URL')
 CACHE_EXPIRY = 3600
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+# Sentry
+Sentry.init()
 
 CORS_ALLOW_HEADERS = [
     'sentry-trace',
