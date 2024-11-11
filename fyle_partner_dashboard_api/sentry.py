@@ -14,7 +14,6 @@ class Sentry:
             send_default_pii=True,
             integrations=[DjangoIntegration()],
             environment=os.environ.get('SENTRY_ENV'),
-            traces_sampler=Sentry.traces_sampler,
             before_send=Sentry.before_send,
             attach_stacktrace=True,
             request_bodies='small',
@@ -23,15 +22,6 @@ class Sentry:
             'apps.partner',
             'fyle_rest_auth'],
         )
-
-    @staticmethod
-    def traces_sampler(sampling_context):
-        # avoiding ready APIs in performance tracing
-        if sampling_context.get('wsgi_environ') is not None:
-            if 'ready/' in sampling_context['wsgi_environ']['PATH_INFO']:
-                return 0
-
-        return 1
 
     @staticmethod
     def before_send(event, hint):
