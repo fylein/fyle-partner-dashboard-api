@@ -17,7 +17,7 @@ class Sentry:
             traces_sampler=Sentry.traces_sampler,
             before_send=Sentry.before_send,
             attach_stacktrace=True,
-            request_bodies='small',
+            max_request_body_size='small',
             in_app_include=['apps.users',
             'apps.fyle',
             'apps.partner',
