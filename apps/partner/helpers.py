@@ -17,7 +17,7 @@ def post_request(url: str, body: Dict, access_token: str) -> Dict:
     response = requests.post(
         url,
         headers=api_headers,
-        data=body
+        data=json.dumps(body)
     )
 
     if response.status_code == 200:
