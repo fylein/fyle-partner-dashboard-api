@@ -1,4 +1,3 @@
-import os
 from unittest import mock
 from datetime import datetime, timezone
 import pytest
@@ -7,10 +6,6 @@ from rest_framework.test import APIClient
 from apps.partner.models import PartnerOrg
 
 from tests.fixture import fixture
-
-
-def pytest_configure():
-    os.system('sh ./tests/sql_fixtures/reset_db_fixtures/reset_db.sh')
 
 
 @pytest.fixture
