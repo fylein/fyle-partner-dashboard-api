@@ -22,7 +22,7 @@ RUN pylint --load-plugins pylint_django --rcfile=.pylintrc **/**.py
 #================================================================
 # Setup non-root user and permissions
 #================================================================
-RUN groupadd -r partner_dashboard_api_service && \
+RUN groupadd -r -g 1001 partner_dashboard_api_service && \
     useradd -r -g partner_dashboard_api_service partner_dashboard_api_user && \
     chown -R partner_dashboard_api_user:partner_dashboard_api_service /fyle-partner-dashboard-api
 
