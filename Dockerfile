@@ -19,6 +19,21 @@ WORKDIR /fyle-partner-dashboard-api
 # Do linting checks
 RUN pylint --load-plugins pylint_django --rcfile=.pylintrc **/**.py
 
+#================================================================
+# Set default GID if not provided during build
+#================================================================
+ARG SERVICE_GID=1001
+
+#================================================================
+# Setup non-root user and permissions
+#================================================================
+RUN groupadd -r -g ${SERVICE_GID} partner_dashboard_api_service && \
+    useradd -r -g partner_dashboard_api_service partner_dashboard_api_user && \
+    chown -R partner_dashboard_api_user:partner_dashboard_api_service /fyle-partner-dashboard-api
+
+# Switch to non-root user
+USER partner_dashboard_api_user
+
 # Expose development port
 EXPOSE 8000
 
