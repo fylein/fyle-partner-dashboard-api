@@ -8,8 +8,9 @@ services:
         CI: ENABLED
     entrypoint: bash run.sh
     restart: unless-stopped
+    user: root
     volumes:
-    - api-volume:/fyle-partner-dashboard-api
+    - ./:/fyle-partner-dashboard-api
     ports:
     - 8006:8006
     depends_on:
@@ -37,4 +38,4 @@ services:
       - ./tests/sql_fixtures/reset_db_fixtures/reset_db.sql:/docker-entrypoint-initdb.d/reset_db.sql
 
 volumes:
-  api-volume:
+  api:
