@@ -44,7 +44,7 @@ class OrgsView(generics.RetrieveAPIView):
 
         platform = PlatformConnector(refresh_token, cluster_domain)
 
-        orgs = platform.connection.v1beta.accountant.orgs.list(query_params={
+        orgs = platform.connection.v1.accountant.orgs.list(query_params={
             'limit': self.request.query_params.get('limit'),
             'offset': self.request.query_params.get('offset'),
             'order': 'name.asc'
