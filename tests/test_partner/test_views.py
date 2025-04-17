@@ -67,7 +67,7 @@ def test_orgs_get_view(api_client, mocker, access_token):
     Test Get of Partner Orgs
     """
     mocker.patch(
-        'fyle.platform.apis.v1beta.accountant.orgs.list',
+        'fyle.platform.apis.v1.accountant.orgs.list',
          return_value=fixture['orgs']
     )
     url = reverse('orgs')
