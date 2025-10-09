@@ -3,6 +3,7 @@ fixture = {
         "id": 2,
         "name": "Anagha Org",
         "primary_org_id": "orHVw3ikkCxJ",
+        "is_org_rebranded": False,
         "cluster_domain": "https://staging.fyle.tech",
         "currency": "EUR",
         "created_at": "2022-09-27T09:58:51.483072Z",
